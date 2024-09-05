@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://v2t14c1nbjy3"]
+
+[ext_resource type="Script" path="res://2DCharacterControllers/PlatformerCharacter/player.gd" id="1_ru60c"]
+[ext_resource type="Texture2D" uid="uid://cyy3dgegd3j6h" path="res://img/icon.svg" id="2_08dfw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gb8t"]
+size = Vector2(64, 64)
+
+[node name="Player" type="CharacterBody2D" groups=["PLAYER"]]
+script = ExtResource("1_ru60c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6gb8t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_08dfw")
+
+[node name="TimerHolder" type="Node" parent="."]
+
+[node name="CayoteTimer" type="Timer" parent="TimerHolder"]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
+
+[node name="DashTimer" type="Timer" parent="TimerHolder"]
+unique_name_in_owner = true
+wait_time = 0.05
+one_shot = true
+
+[connection signal="timeout" from="TimerHolder/CayoteTimer" to="." method="_on_cayote_timer_timeout"]
+[connection signal="timeout" from="TimerHolder/DashTimer" to="." method="_on_dash_timer_timeout"]

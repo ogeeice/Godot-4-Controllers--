@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://brnh78soivo6j"]
+
+[ext_resource type="PackedScene" uid="uid://v2t14c1nbjy3" path="res://2DCharacterControllers/PlatformerCharacter/player.tscn" id="1_ev0u2"]
+[ext_resource type="PackedScene" uid="uid://bmhaxbrsw5cw1" path="res://2DCharacterControllers/Enemy/Platformer/enemy.tscn" id="2_uv2c6"]
+[ext_resource type="PackedScene" uid="uid://c48xo42lg7wqd" path="res://2DCharacterControllers/2DCamera/player_cam.tscn" id="3_1sobo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2s10y"]
+size = Vector2(1088, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1kh65"]
+size = Vector2(352, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rd84u"]
+size = Vector2(32, 648)
+
+[node name="Test2D" type="Node2D"]
+
+[node name="LevelContainer" type="Node" parent="."]
+
+[node name="Floor" type="StaticBody2D" parent="LevelContainer"]
+position = Vector2(576, 624)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelContainer/Floor"]
+shape = SubResource("RectangleShape2D_2s10y")
+
+[node name="Floor4" type="StaticBody2D" parent="LevelContainer"]
+position = Vector2(848, 432)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelContainer/Floor4"]
+shape = SubResource("RectangleShape2D_1kh65")
+
+[node name="Floor5" type="StaticBody2D" parent="LevelContainer"]
+position = Vector2(208, 344)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelContainer/Floor5"]
+shape = SubResource("RectangleShape2D_1kh65")
+
+[node name="Floor2" type="StaticBody2D" parent="LevelContainer"]
+position = Vector2(1136, 320)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelContainer/Floor2"]
+shape = SubResource("RectangleShape2D_rd84u")
+
+[node name="Floor3" type="StaticBody2D" parent="LevelContainer"]
+position = Vector2(16, 320)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelContainer/Floor3"]
+shape = SubResource("RectangleShape2D_rd84u")
+
+[node name="EnemyContainer" type="Node" parent="."]
+
+[node name="Enemy" parent="EnemyContainer" instance=ExtResource("2_uv2c6")]
+position = Vector2(736, 384)
+
+[node name="Enemy2" parent="EnemyContainer" instance=ExtResource("2_uv2c6")]
+position = Vector2(208, 288)
+FacingL = false
+
+[node name="PlayerContainer" type="Node" parent="."]
+
+[node name="Player" parent="PlayerContainer" instance=ExtResource("1_ev0u2")]
+position = Vector2(536, 568)
+jump_max = 2
+
+[node name="PlayerCam" parent="." instance=ExtResource("3_1sobo")]
+position = Vector2(576, 320)

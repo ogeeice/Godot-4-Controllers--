@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ea6g8wcnl05j"]
+
+[ext_resource type="Script" path="res://3DCharacterControllers/PlatformerCharacter/BulletDecal/bulletdecal.gd" id="1_crcad"]
+[ext_resource type="Texture2D" uid="uid://cyy3dgegd3j6h" path="res://img/icon.svg" id="2_trsga"]
+
+[node name="Bulletdecal" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_crcad")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.02)
+texture = ExtResource("2_trsga")
+
+[node name="ExistTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="ExistTimer" to="." method="_on_exist_timer_timeout"]

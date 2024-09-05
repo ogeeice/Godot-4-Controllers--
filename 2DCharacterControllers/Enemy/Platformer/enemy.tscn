@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmhaxbrsw5cw1"]
+
+[ext_resource type="Script" path="res://2DCharacterControllers/Enemy/Platformer/enemy.gd" id="1_nqvn1"]
+[ext_resource type="Texture2D" uid="uid://cyy3dgegd3j6h" path="res://img/icon.svg" id="2_klbvm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gb8t"]
+size = Vector2(64, 64)
+
+[node name="Enemy" type="CharacterBody2D" groups=["ENEMY"]]
+script = ExtResource("1_nqvn1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6gb8t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_klbvm")
+
+[node name="RaycastHolder" type="Node2D" parent="."]
+
+[node name="FloorDetect" type="RayCast2D" parent="RaycastHolder"]
+unique_name_in_owner = true
+position = Vector2(33, 24)
+target_position = Vector2(0, 20)
+
+[node name="WallDetect" type="RayCast2D" parent="RaycastHolder"]
+unique_name_in_owner = true
+position = Vector2(33, 0)
+target_position = Vector2(10, 0)

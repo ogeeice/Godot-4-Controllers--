@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds6kav864bj6x"]
+
+[ext_resource type="Script" path="res://3DCharacterControllers/PlatformerCharacter/Bullet/bullet.gd" id="1_cxd7u"]
+[ext_resource type="Texture2D" uid="uid://cyy3dgegd3j6h" path="res://img/icon.svg" id="2_f847j"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_vtvc5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7m5y"]
+albedo_texture = ExtResource("2_f847j")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7tqen"]
+
+[node name="Bullet" type="Area3D" groups=["BULLET"]]
+script = ExtResource("1_cxd7u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_vtvc5")
+surface_material_override/0 = SubResource("StandardMaterial3D_r7m5y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_7tqen")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
